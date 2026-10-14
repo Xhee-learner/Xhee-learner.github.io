@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>张泽熙 | 药学 × AI for Science</title>
+<style>
+  :root {
+    --bg: #0f1419;
+    --card: #1a2027;
+    --text: #e6e9ed;
+    --muted: #9aa4b0;
+    --accent: #4fc08d;
+    --accent2: #5b9bd5;
+    --border: #2a323c;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: "PingFang SC", "Microsoft YaHei", "Segoe UI", sans-serif;
+    background: var(--bg); color: var(--text);
+    line-height: 1.75;
+  }
+  a { color: var(--accent2); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .container { max-width: 860px; margin: 0 auto; padding: 0 24px; }
+ 
+  /* Hero */
+  header {
+    padding: 90px 0 60px;
+    background: linear-gradient(135deg, #101820 0%, #16241f 100%);
+    border-bottom: 1px solid var(--border);
+  }
+  header h1 { font-size: 2.6rem; letter-spacing: 1px; }
+  header h1 span { color: var(--accent); }
+  header p.sub { color: var(--muted); font-size: 1.1rem; margin-top: 10px; }
+  .tags { margin-top: 22px; display: flex; flex-wrap: wrap; gap: 10px; }
+  .tag {
+    border: 1px solid var(--border); border-radius: 999px;
+    padding: 4px 14px; font-size: .88rem; color: var(--muted);
+    background: rgba(255,255,255,.03);
+  }
+ 
+  /* Sections */
+  section { padding: 52px 0; border-bottom: 1px solid var(--border); }
+  section:last-of-type { border-bottom: none; }
+  h2 {
+    font-size: 1.4rem; margin-bottom: 26px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  h2::before { content: ""; width: 8px; height: 22px; background: var(--accent); border-radius: 3px; }
+ 
+  /* About */
+  .about p { color: var(--muted); margin-bottom: 12px; }
+  .about strong { color: var(--text); }
+ 
+  /* Project cards */
+  .card {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 12px; padding: 22px 24px; margin-bottom: 18px;
+    transition: transform .2s, border-color .2s;
+  }
+  .card:hover { transform: translateY(-3px); border-color: var(--accent); }
+  .card h3 { font-size: 1.08rem; margin-bottom: 6px; }
+  .card h3 em {
+    font-style: normal; font-size: .78rem; color: var(--accent);
+    border: 1px solid var(--accent); border-radius: 4px;
+    padding: 1px 8px; margin-left: 10px; vertical-align: 2px;
+  }
+  .card p { color: var(--muted); font-size: .95rem; }
+ 
+  /* Skills */
+  .skills { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 18px; }
+  .skill-group h4 { color: var(--accent); margin-bottom: 8px; font-size: .98rem; }
+  .skill-group li { color: var(--muted); font-size: .93rem; margin-left: 18px; }
+ 
+  /* Contact */
+  .contact p { color: var(--muted); margin-bottom: 8px; }
+ 
+  footer {
+    padding: 28px 0; text-align: center;
+    color: var(--muted); font-size: .85rem; border-top: 1px solid var(--border);
+  }
+ 
+  @media (max-width: 560px) {
+    header h1 { font-size: 2rem; }
+    section { padding: 40px 0; }
+  }
+</style>
+</head>
+<body>
+ 
+<header>
+  <div class="container">
+    <h1>你好，我是<span>张泽熙</span></h1>
+    <p class="sub">杭州师范大学 · 药学本科 ｜ 关注 AI for Science 与药物分析的交叉方向</p>
+    <div class="tags">
+      <span class="tag">AI4S</span>
+      <span class="tag">药物分析</span>
+      <span class="tag">VibeCoding</span>
+      <span class="tag">知识图谱</span>
+      <span class="tag">绿色分离</span>
+    </div>
+  </div>
+</header>
+ 
+<section class="about">
+  <div class="container">
+    <h2>关于我</h2>
+    <p>药学专业本科在读（专业排名前 5%），系统掌握 HPLC 等仪器分析与药物化学知识，同时长期使用 AI 工具开展<strong> VibeCoding 与 AI for Science 实践</strong>，是"懂实验、会编程、能做产品"的交叉型学习者。</p>
+    <p>独立完成多个个人项目：从理论计算指导的材料设计，到知识图谱平台的从 0 到 1，再到创业计划与科研论文写作。相信 AI 正在重塑科研与药物研发的工作方式，并乐于身处其中。</p>
+  </div>
+</section>
+ 
+<section>
+  <div class="container">
+    <h2>项目经历</h2>
+    <div class="card">
+      <h3>药研云图（药化云）<em>创始人 / 独立开发</em></h3>
+      <p>面向药物化学的知识图谱平台：整合药物-靶点-疾病关联数据，构建可视化知识网络，辅助药物设计决策。采用 VibeCoding 模式独立完成产品原型、前后端开发与部署，并配套建设自媒体矩阵推广。</p>
+    </div>
+    <div class="card">
+      <h3>OPC 创业计划<em>核心发起人</em></h3>
+      <p>定位 AI for Science 药学垂直方向的开放式研发创业项目：规划"AI 辅助药物设计 + 科研服务"双轮业务，完成市场调研、产品方向设计与商业计划书撰写，探索从 0 到 1 的团队搭建。</p>
+    </div>
+    <div class="card">
+      <h3>AI4S 科研论文项目<em>独立研究者</em></h3>
+      <p>AI 辅助药物分子设计与发现方向：完成文献调研、算法原型验证与论文写作，探索机器学习在分子性质预测与虚拟筛选中的应用。</p>
+    </div>
+    <div class="card">
+      <h3>绿色分离介质研究（"绿径通优"）<em>项目成员</em></h3>
+      <p>围绕中药活性成分的绿色分离开展三模块研究：分子印迹固相萃取、温敏硼酸聚合物纯化多糖、DES 改性色谱分离生物碱，涉及 HPLC 方法学验证与理论计算。</p>
+    </div>
+  </div>
+</section>
+ 
+<section>
+  <div class="container">
+    <h2>技能</h2>
+    <div class="skills">
+      <div class="skill-group">
+        <h4>实验与分析</h4>
+        <ul>
+          <li>HPLC 操作与方法学验证</li>
+          <li>天然药物化学提取分离</li>
+          <li>图谱解析（NMR / MS / IR）</li>
+        </ul>
+      </div>
+      <div class="skill-group">
+        <h4>AI 与编程</h4>
+        <ul>
+          <li>VibeCoding 全栈开发</li>
+          <li>AI 辅助科研工作流</li>
+          <li>知识图谱构建</li>
+        </ul>
+      </div>
+      <div class="skill-group">
+        <h4>产品与运营</h4>
+        <ul>
+          <li>商业计划书撰写</li>
+          <li>产品原型设计</li>
+          <li>自媒体内容运营</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+ 
+<section class="contact">
+  <div class="container">
+    <h2>联系我</h2>
+    <p>邮箱：<a href="17308888589@163.com">17308888589@163.com</a></p>
+    <p>GitHub：<a href="https://github.com/Xhee-learner">github.com/Xhee-learner</a></p>
+  </div>
+</section>
+ 
+<footer>
+  <div class="container">© 2026 张泽熙 · Built with GitHub Pages</div>
+</footer>
+ 
+</body>
+</html>
