@@ -4,140 +4,384 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>张泽熙 | 药学 × AI for Science</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;800&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --bg: #0f1419;
-    --card: #1a2027;
-    --text: #e6e9ed;
-    --muted: #9aa4b0;
-    --accent: #4fc08d;
-    --accent2: #5b9bd5;
-    --border: #2a323c;
-  }
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  body {
-    font-family: "PingFang SC", "Microsoft YaHei", "Segoe UI", sans-serif;
-    background: var(--bg); color: var(--text);
-    line-height: 1.75;
-  }
-  a { color: var(--accent2); text-decoration: none; }
-  a:hover { text-decoration: underline; }
-  .container { max-width: 860px; margin: 0 auto; padding: 0 24px; }
- 
-  /* Hero */
-  header {
-    padding: 90px 0 60px;
-    background: linear-gradient(135deg, #101820 0%, #16241f 100%);
-    border-bottom: 1px solid var(--border);
-  }
-  header h1 { font-size: 2.6rem; letter-spacing: 1px; }
-  header h1 span { color: var(--accent); }
-  header p.sub { color: var(--muted); font-size: 1.1rem; margin-top: 10px; }
-  .tags { margin-top: 22px; display: flex; flex-wrap: wrap; gap: 10px; }
-  .tag {
-    border: 1px solid var(--border); border-radius: 999px;
-    padding: 4px 14px; font-size: .88rem; color: var(--muted);
-    background: rgba(255,255,255,.03);
-  }
- 
-  /* Sections */
-  section { padding: 52px 0; border-bottom: 1px solid var(--border); }
-  section:last-of-type { border-bottom: none; }
-  h2 {
-    font-size: 1.4rem; margin-bottom: 26px;
-    display: flex; align-items: center; gap: 10px;
-  }
-  h2::before { content: ""; width: 8px; height: 22px; background: var(--accent); border-radius: 3px; }
- 
-  /* About */
-  .about p { color: var(--muted); margin-bottom: 12px; }
-  .about strong { color: var(--text); }
- 
-  /* Project cards */
-  .card {
-    background: var(--card); border: 1px solid var(--border);
-    border-radius: 12px; padding: 22px 24px; margin-bottom: 18px;
-    transition: transform .2s, border-color .2s;
-  }
-  .card:hover { transform: translateY(-3px); border-color: var(--accent); }
-  .card h3 { font-size: 1.08rem; margin-bottom: 6px; }
-  .card h3 em {
-    font-style: normal; font-size: .78rem; color: var(--accent);
-    border: 1px solid var(--accent); border-radius: 4px;
-    padding: 1px 8px; margin-left: 10px; vertical-align: 2px;
-  }
-  .card p { color: var(--muted); font-size: .95rem; }
- 
-  /* Skills */
-  .skills { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 18px; }
-  .skill-group h4 { color: var(--accent); margin-bottom: 8px; font-size: .98rem; }
-  .skill-group li { color: var(--muted); font-size: .93rem; margin-left: 18px; }
- 
-  /* Contact */
-  .contact p { color: var(--muted); margin-bottom: 8px; }
- 
-  footer {
-    padding: 28px 0; text-align: center;
-    color: var(--muted); font-size: .85rem; border-top: 1px solid var(--border);
-  }
- 
-  @media (max-width: 560px) {
-    header h1 { font-size: 2rem; }
-    section { padding: 40px 0; }
-  }
+/* ========== 主题令牌（HSL，与参考项目同源） ========== */
+:root {
+  --radius: 0.75rem;
+  --background: 215 55% 8%;
+  --foreground: 210 30% 92%;
+  --card: 215 45% 13%;
+  --card-foreground: 210 30% 92%;
+  --primary: 188 48% 55%;
+  --primary-foreground: 215 55% 8%;
+  --secondary: 215 35% 18%;
+  --muted: 215 30% 20%;
+  --muted-foreground: 210 18% 62%;
+  --accent: 38 62% 58%;
+  --accent-foreground: 215 55% 8%;
+  --border: 215 30% 22%;
+  --ring: 188 48% 55%;
+  --glow: 43 62% 64%;
+  --mol-bond: 188 46% 64%;
+  --mol-c: 210 34% 92%;
+  --mol-h: 210 22% 66%;
+  --mol-o: 38 66% 68%;
+  --mol-n: 188 58% 70%;
+  --mol-s: 48 72% 70%;
+  --mol-cl: 150 48% 63%;
+}
+
+/* 荧光 */
+html.fluor {
+  --background: 262 55% 4%;
+  --primary: 174 72% 62%;
+  --accent: 312 82% 66%;
+  --mol-bond: 174 60% 62%;
+  --mol-c: 174 70% 76%;
+  --mol-h: 174 35% 55%;
+  --mol-o: 312 80% 70%;
+  --mol-n: 200 85% 72%;
+  --mol-s: 56 85% 65%;
+  --mol-cl: 140 75% 62%;
+  --glow: 168 78% 70%;
+  --muted-foreground: 210 18% 66%;
+  --border: 260 30% 20%;
+}
+/* 多巴胺 */
+html.dopamine {
+  --background: 305 32% 7%;
+  --foreground: 320 28% 94%;
+  --card: 305 28% 11%;
+  --primary: 330 88% 66%;
+  --muted-foreground: 316 18% 66%;
+  --accent: 152 78% 55%;
+  --border: 308 24% 24%;
+  --mol-bond: 330 76% 78%;
+  --mol-c: 320 32% 95%;
+  --mol-h: 275 44% 82%;
+  --mol-o: 18 96% 72%;
+  --mol-n: 208 92% 76%;
+  --mol-s: 52 94% 72%;
+  --mol-cl: 152 82% 67%;
+  --glow: 335 93% 76%;
+}
+/* 青瓷月白（浅色） */
+html.celadon {
+  --background: 190 24% 96%;
+  --foreground: 210 32% 22%;
+  --card: 190 22% 99%;
+  --primary: 195 48% 32%;
+  --primary-foreground: 190 24% 96%;
+  --muted-foreground: 210 16% 42%;
+  --accent: 36 58% 42%;
+  --accent-foreground: 190 24% 96%;
+  --border: 195 16% 85%;
+  --mol-bond: 195 42% 38%;
+  --mol-c: 210 30% 32%;
+  --mol-h: 210 18% 52%;
+  --mol-o: 8 70% 50%;
+  --mol-n: 214 68% 44%;
+  --mol-s: 44 78% 44%;
+  --mol-cl: 152 42% 36%;
+  --glow: 36 58% 44%;
+}
+/* 本草青蒿（绿） */
+html.herbal {
+  --background: 165 22% 7%;
+  --foreground: 150 18% 88%;
+  --card: 165 20% 10%;
+  --primary: 158 42% 46%;
+  --primary-foreground: 165 30% 6%;
+  --muted-foreground: 158 12% 62%;
+  --accent: 42 55% 58%;
+  --mol-bond: 158 34% 76%;
+  --mol-c: 150 24% 92%;
+  --mol-h: 42 32% 83%;
+  --mol-o: 8 64% 63%;
+  --mol-n: 218 50% 71%;
+  --mol-s: 45 66% 67%;
+  --mol-cl: 140 38% 65%;
+  --glow: 158 48% 58%;
+  --border: 160 15% 22%;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: "Rajdhani", "PingFang SC", "Microsoft YaHei", sans-serif;
+  background: hsl(var(--background));
+  color: hsl(var(--foreground));
+  line-height: 1.85;
+  transition: background-color .45s ease, color .45s ease;
+  font-size: 17px;
+  overflow-x: hidden;
+  font-feature-settings: "tnum" 1;
+  -webkit-font-smoothing: antialiased;
+}
+* { transition: background-color .45s ease, border-color .45s ease, color .45s ease, fill .45s ease, stroke .45s ease; }
+::selection { background: hsl(var(--primary) / .28); color: #fff; }
+::-webkit-scrollbar { width: 9px; }
+::-webkit-scrollbar-track { background: hsl(var(--background)); }
+::-webkit-scrollbar-thumb { background: hsl(var(--border)); border-radius: 6px; }
+a { color: hsl(var(--primary)); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+/* 签名样式（来自参考项目） */
+.sig-eyebrow { letter-spacing: .32em; text-transform: uppercase; }
+.sig-glass {
+  background: hsl(var(--card) / .55);
+  backdrop-filter: blur(14px);
+  border: 1px solid hsl(var(--border) / .8);
+}
+.sig-shimmer-text {
+  background-image: linear-gradient(110deg, hsl(var(--foreground)) 32%, hsl(var(--primary)) 46%, hsl(var(--accent)) 52%, hsl(var(--foreground)) 68%);
+  background-size: 200% 100%;
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent; color: transparent;
+  animation: shimmer 6s linear infinite;
+}
+@keyframes shimmer { to { background-position: -200% 0; } }
+.sig-card-hover { transition: transform .45s cubic-bezier(.22,1,.36,1), border-color .45s, box-shadow .45s; }
+.sig-card-hover:hover { transform: translateY(-6px); border-color: hsl(var(--primary) / .5); box-shadow: 0 18px 44px -18px hsl(var(--primary) / .35); }
+.glow-title { filter: drop-shadow(0 2px 10px hsl(var(--glow) / .3)); }
+
+.container { max-width: 980px; margin: 0 auto; padding: 0 28px; }
+
+/* 导航 */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 50;
+  backdrop-filter: blur(14px);
+  background: hsl(var(--background) / .62);
+  border-bottom: 1px solid hsl(var(--border) / .5);
+}
+.nav-inner { max-width: 980px; margin: 0 auto; padding: 0 28px; height: 60px; display: flex; align-items: center; justify-content: space-between; }
+.nav-logo { font-family: "Unbounded", sans-serif; font-size: .82rem; font-weight: 600; letter-spacing: .06em; display: flex; align-items: center; gap: 9px; }
+.nav-logo .hex { width: 18px; height: 18px; flex: none; clip-path: polygon(50% 0,100% 25%,100% 75%,50% 100%,0 75%,0 25%); background: hsl(var(--primary)); box-shadow: 0 0 14px hsl(var(--primary) / .55); animation: hexPulse 3.2s ease-in-out infinite; }
+@keyframes hexPulse { 0%,100% { box-shadow: 0 0 10px hsl(var(--primary) / .35); } 50% { box-shadow: 0 0 20px hsl(var(--primary) / .75); } }
+.nav-right { display: flex; align-items: center; gap: 26px; }
+.nav-links { display: flex; gap: 24px; font-size: .95rem; font-weight: 600; }
+.nav-links a { color: hsl(var(--muted-foreground)); position: relative; padding: 4px 0; }
+.nav-links a::after { content: ""; position: absolute; left: 0; bottom: -2px; height: 2px; width: 0; background: hsl(var(--primary)); transition: width .25s; }
+.nav-links a:hover { color: hsl(var(--foreground)); text-decoration: none; }
+.nav-links a:hover::after { width: 100%; }
+/* 主题切换器 */
+.theme-switch { display: flex; gap: 6px; padding: 4px; border-radius: 999px; border: 1px solid hsl(var(--border)); background: hsl(var(--card) / .5); }
+.theme-dot { width: 16px; height: 16px; border-radius: 50%; cursor: pointer; border: 2px solid transparent; transition: transform .2s, border-color .2s; flex: none; }
+.theme-dot:hover { transform: scale(1.15); }
+.theme-dot.active { border-color: hsl(var(--primary)); box-shadow: 0 0 8px hsl(var(--primary) / .5); }
+@media (max-width: 640px) { .nav-links { display: none; } }
+
+/* 首屏 */
+#hero { position: relative; min-height: 100vh; display: flex; flex-direction: column; justify-content: center; overflow: hidden; }
+#molCanvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; cursor: crosshair; }
+.hero-vignette { position: absolute; inset: 0; pointer-events: none; background: radial-gradient(ellipse 60% 50% at 50% 45%, hsl(var(--background) / .85) 0%, hsl(var(--background) / 0) 70%); }
+.hero-content { position: relative; z-index: 10; text-align: center; padding: 120px 24px 0; pointer-events: none; }
+.hero-eyebrow { font-size: .78rem; color: hsl(var(--primary)); margin-bottom: 18px; opacity: 0; animation: rise .8s ease forwards; }
+.hero-content h1 { font-family: "Unbounded", sans-serif; font-size: clamp(2.4rem, 6vw, 4.4rem); font-weight: 800; line-height: 1.1; margin-bottom: 18px; opacity: 0; animation: rise .8s ease .1s forwards; }
+.hero-content p { font-size: 1.12rem; color: hsl(var(--muted-foreground)); max-width: 560px; margin: 0 auto; opacity: 0; animation: rise .8s ease .25s forwards; }
+.hero-content p strong { color: hsl(var(--foreground)); }
+@keyframes rise { from { opacity: 0; transform: translateY(22px); } to { opacity: 1; transform: none; } }
+/* 底部状态条 */
+.hero-status { position: absolute; bottom: 28px; left: 0; right: 0; z-index: 10; display: flex; justify-content: center; padding: 0 24px; opacity: 0; animation: rise .8s ease .55s forwards; }
+.status-bar { display: flex; align-items: center; gap: 16px; padding: 8px 18px; border-radius: 999px; }
+.status-name { font-size: .95rem; font-weight: 600; letter-spacing: .04em; }
+.status-formula { font-size: .82rem; color: hsl(var(--muted-foreground)); letter-spacing: .1em; }
+.status-hint { font-size: .72rem; color: hsl(var(--muted-foreground)); letter-spacing: .12em; opacity: .75; margin-top: 6px; text-align: center; }
+@media (max-width: 560px) { .status-bar { flex-direction: column; gap: 4px; padding: 10px 18px; } }
+
+/* 通用区块 */
+section { padding: 104px 0; position: relative; }
+.sec-tag { font-family: "Unbounded", sans-serif; font-size: .7rem; letter-spacing: .36em; color: hsl(var(--primary)); margin-bottom: 18px; display: flex; align-items: center; gap: 16px; font-weight: 600; }
+.sec-tag::before { content: ""; width: 40px; height: 1px; background: linear-gradient(90deg, hsl(var(--primary)), transparent); }
+.sec-tag::after { content: ""; flex: 1; height: 1px; background: hsl(var(--border) / .5); }
+h2 { font-family: "Unbounded", sans-serif; font-size: clamp(1.6rem, 3.6vw, 2.25rem); font-weight: 700; margin-bottom: 48px; letter-spacing: -.01em; }
+
+/* 关于 */
+.about-grid { display: grid; grid-template-columns: 1.5fr 1fr; gap: 36px; }
+.about-card p { color: hsl(var(--muted-foreground)); margin-bottom: 18px; font-size: 1.02rem; }
+.about-card p:last-child { margin-bottom: 0; }
+.about-card strong { color: hsl(var(--primary)); font-weight: 700; }
+.stats { display: grid; gap: 16px; align-content: start; }
+.stat { border: 1px solid hsl(var(--border)); border-radius: 14px; padding: 20px 24px; background: hsl(var(--card) / .55); display: flex; align-items: baseline; gap: 16px; transition: border-color .3s, box-shadow .3s, transform .3s; position: relative; overflow: hidden; }
+.stat::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; background: linear-gradient(180deg, hsl(var(--primary)), hsl(var(--accent))); }
+.stat:hover { border-color: hsl(var(--primary) / .55); box-shadow: 0 12px 32px -12px hsl(var(--primary) / .28); transform: translateY(-2px); }
+.stat b { font-family: "Unbounded", sans-serif; font-size: 1.7rem; font-weight: 800; background: linear-gradient(100deg, hsl(var(--primary)), hsl(var(--accent))); -webkit-background-clip: text; background-clip: text; color: transparent; line-height: 1; }
+.stat span { color: hsl(var(--muted-foreground)); font-size: .9rem; letter-spacing: .02em; }
+@media (max-width: 780px) { .about-grid { grid-template-columns: 1fr; } }
+
+/* 项目卡 */
+.cards { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+@media (max-width: 780px) { .cards { grid-template-columns: 1fr; } }
+.card { position: relative; border: 1px solid hsl(var(--border)); border-radius: 16px; background: hsl(var(--card) / .55); backdrop-filter: blur(8px); padding: 30px; overflow: hidden; transition: transform .4s cubic-bezier(.22,1,.36,1), border-color .4s, box-shadow .4s; }
+.card::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, hsl(var(--primary)), hsl(var(--accent))); transform: scaleX(0); transform-origin: left; transition: transform .5s cubic-bezier(.22,1,.36,1); }
+.card:hover { transform: translateY(-6px); border-color: hsl(var(--primary) / .45); box-shadow: 0 22px 50px -20px hsl(var(--primary) / .3); }
+.card:hover::before { transform: scaleX(1); }
+.card-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; }
+.card-no { font-family: "Unbounded", sans-serif; font-size: .7rem; color: hsl(var(--primary) / .65); letter-spacing: .24em; font-weight: 600; }
+.card h3 { font-size: 1.18rem; font-weight: 700; letter-spacing: -.01em; }
+.role { font-size: .72rem; color: hsl(var(--primary)); border: 1px solid hsl(var(--primary) / .4); border-radius: 6px; padding: 3px 11px; letter-spacing: .08em; white-space: nowrap; background: hsl(var(--primary) / .08); }
+.card p { color: hsl(var(--muted-foreground)); font-size: .94rem; margin-top: 12px; line-height: 1.75; }
+.chips { margin-top: 20px; display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { font-size: .73rem; color: hsl(var(--muted-foreground)); background: hsl(var(--primary) / .1); border: 1px solid hsl(var(--primary) / .22); padding: 4px 12px; border-radius: 999px; transition: all .25s; }
+.chip:hover { color: hsl(var(--primary)); border-color: hsl(var(--primary) / .5); background: hsl(var(--primary) / .16); }
+
+/* 技能 */
+.skills { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+@media (max-width: 780px) { .skills { grid-template-columns: 1fr; } }
+.skill-group { border: 1px solid hsl(var(--border)); border-radius: 16px; padding: 28px 26px; background: hsl(var(--card) / .5); position: relative; overflow: hidden; transition: border-color .3s, transform .3s, box-shadow .3s; }
+.skill-group::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; background: linear-gradient(180deg, hsl(var(--primary)), hsl(var(--accent))); }
+.skill-group:hover { border-color: hsl(var(--primary) / .45); transform: translateY(-4px); box-shadow: 0 18px 40px -18px hsl(var(--primary) / .25); }
+.skill-group h4 { font-family: "Unbounded", sans-serif; font-size: .82rem; letter-spacing: .16em; color: hsl(var(--primary)); margin-bottom: 18px; font-weight: 700; }
+.skill-group ul { display: grid; gap: 2px; }
+.skill-group li { list-style: none; color: hsl(var(--muted-foreground)); padding: 10px 0 10px 24px; position: relative; border-bottom: 1px solid hsl(var(--border) / .5); font-size: .95rem; transition: color .25s, padding-left .25s; }
+.skill-group li:last-child { border-bottom: none; }
+.skill-group li::before { content: "⬡"; position: absolute; left: 0; top: 50%; transform: translateY(-50%); color: hsl(var(--primary) / .7); font-size: .75rem; transition: color .25s; }
+.skill-group li:hover { color: hsl(var(--foreground)); padding-left: 30px; }
+.skill-group li:hover::before { color: hsl(var(--primary)); }
+
+/* 联系 */
+.contact-box { border: 1px solid hsl(var(--border)); border-radius: 20px; padding: 52px 44px; text-align: center; background: radial-gradient(500px 200px at 20% 0%, hsl(var(--primary) / .12), transparent 70%), radial-gradient(500px 240px at 90% 100%, hsl(var(--accent) / .14), transparent 70%), hsl(var(--card) / .5); position: relative; overflow: hidden; }
+.contact-box::before { content: ""; position: absolute; top: 0; left: 10%; right: 10%; height: 1px; background: linear-gradient(90deg, transparent, hsl(var(--primary) / .5), transparent); }
+.contact-box h3 { font-family: "Unbounded", sans-serif; font-size: 1.4rem; margin-bottom: 12px; font-weight: 700; }
+.contact-box p { color: hsl(var(--muted-foreground)); font-size: 1rem; }
+.contact-row { margin-top: 30px; display: flex; justify-content: center; flex-wrap: wrap; gap: 16px; }
+.btn { display: inline-flex; align-items: center; gap: 10px; font-family: "Unbounded", sans-serif; font-size: .8rem; letter-spacing: .1em; padding: 13px 30px; border-radius: 11px; transition: all .3s cubic-bezier(.22,1,.36,1); position: relative; overflow: hidden; }
+.btn-primary { color: hsl(var(--primary-foreground)); background: linear-gradient(100deg, hsl(var(--primary)), hsl(var(--accent))); font-weight: 600; box-shadow: 0 4px 26px hsl(var(--primary) / .35); }
+.btn-primary::after { content: ""; position: absolute; top: 0; left: -100%; width: 60%; height: 100%; background: linear-gradient(100deg, transparent, hsl(0 0% 100% / .35), transparent); transform: skewX(-20deg); transition: left .6s ease; }
+.btn-primary:hover { transform: translateY(-3px); box-shadow: 0 10px 36px hsl(var(--primary) / .5); color: hsl(var(--primary-foreground)); text-decoration: none; }
+.btn-primary:hover::after { left: 130%; }
+.btn-ghost { color: hsl(var(--foreground)); border: 1px solid hsl(var(--border)); background: hsl(var(--primary) / .06); }
+.btn-ghost:hover { border-color: hsl(var(--primary)); transform: translateY(-3px); text-decoration: none; box-shadow: 0 8px 24px -8px hsl(var(--primary) / .3); }
+
+footer { border-top: 1px solid hsl(var(--border)); padding: 36px 0; text-align: center; color: hsl(var(--muted-foreground)); font-size: .85rem; letter-spacing: .06em; position: relative; }
+footer::before { content: ""; position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 120px; height: 1px; background: linear-gradient(90deg, transparent, hsl(var(--primary) / .6), transparent); }
+footer .hexline { color: hsl(var(--primary) / .45); letter-spacing: .5em; margin-bottom: 10px; font-size: .7rem; }
+
+/* 滚动入场动画 */
+.reveal { opacity: 0; transform: translateY(28px); transition: opacity .7s cubic-bezier(.22,1,.36,1), transform .7s cubic-bezier(.22,1,.36,1); }
+.reveal.in { opacity: 1; transform: none; }
+.reveal-delay-1 { transition-delay: .08s; }
+.reveal-delay-2 { transition-delay: .16s; }
+.reveal-delay-3 { transition-delay: .24s; }
+.reveal-delay-4 { transition-delay: .32s; }
+@media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } }
+
+/* 聚变闪现 */
+#fusionFlash { position: fixed; inset: 0; z-index: 60; display: flex; align-items: center; justify-content: center; pointer-events: none; opacity: 0; }
+#fusionFlash .inner { padding: 22px 44px; border-radius: 16px; font-family: "Unbounded", sans-serif; font-size: 1.6rem; font-weight: 600; text-align: center; transform: scale(.8); transition: opacity .35s, transform .35s; }
+#fusionFlash.on { opacity: 1; }
+#fusionFlash.on .inner { transform: scale(1); }
+.quake { animation: quake .6s ease; }
+@keyframes quake { 0%,100% { transform: translate(0,0); } 20% { transform: translate(-4px, 3px); } 40% { transform: translate(5px, -2px); } 60% { transform: translate(-3px, -3px); } 80% { transform: translate(3px, 2px); } }
+
+/* 终章：药物聚拢成「药」字 */
+#finale { position: relative; min-height: 92vh; display: flex; flex-direction: column; justify-content: center; overflow: hidden; padding: 60px 0; }
+#finaleCanvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; cursor: crosshair; }
+.finale-vignette { position: absolute; inset: 0; pointer-events: none; background: radial-gradient(ellipse 55% 60% at 50% 50%, hsl(var(--background) / 0) 35%, hsl(var(--background) / .85) 100%); }
+.finale-content { position: relative; z-index: 10; text-align: center; pointer-events: none; margin-top: auto; padding: 0 24px 40px; }
+.finale-eyebrow { font-family: "Unbounded", sans-serif; font-size: .72rem; letter-spacing: .34em; color: hsl(var(--primary)); margin-bottom: 14px; }
+.finale-content h2 { font-family: "Unbounded", sans-serif; font-size: clamp(1.6rem, 4vw, 2.6rem); font-weight: 700; margin-bottom: 12px; }
+.finale-content p { color: hsl(var(--muted-foreground)); font-size: 1rem; max-width: 520px; margin: 0 auto; }
+.finale-hint { margin-top: 28px; font-size: .76rem; color: hsl(var(--muted-foreground)); letter-spacing: .16em; opacity: .7; }
 </style>
 </head>
 <body>
- 
-<header>
-  <div class="container">
-    <h1>你好，我是<span>张泽熙</span></h1>
-    <p class="sub">杭州师范大学 · 药学本科 ｜ 关注 AI for Science 与药物分析的交叉方向</p>
-    <div class="tags">
-      <span class="tag">AI4S</span>
-      <span class="tag">药物分析</span>
-      <span class="tag">VibeCoding</span>
-      <span class="tag">知识图谱</span>
-      <span class="tag">绿色分离</span>
+
+<nav>
+  <div class="nav-inner">
+    <div class="nav-logo"><span class="hex"></span>ZHANG ZEXI</div>
+    <div class="nav-right">
+      <div class="nav-links">
+        <a href="#about">关于</a>
+        <a href="#projects">项目</a>
+        <a href="#skills">技能</a>
+        <a href="#contact">联系</a>
+      </div>
+      <div class="theme-switch" id="themeSwitch" aria-label="主题切换">
+        <div class="theme-dot" data-theme="" style="background:hsl(188 48% 55%)" title="深夜青"></div>
+        <div class="theme-dot" data-theme="fluor" style="background:hsl(312 82% 66%)" title="荧光"></div>
+        <div class="theme-dot" data-theme="dopamine" style="background:hsl(330 88% 66%)" title="多巴胺"></div>
+        <div class="theme-dot active" data-theme="celadon" style="background:hsl(195 48% 32%)" title="青瓷"></div>
+        <div class="theme-dot" data-theme="herbal" style="background:hsl(158 42% 46%)" title="本草"></div>
+      </div>
     </div>
   </div>
-</header>
- 
-<section class="about">
-  <div class="container">
-    <h2>关于我</h2>
-    <p>药学专业本科在读（专业排名前 5%），系统掌握 HPLC 等仪器分析与药物化学知识，同时长期使用 AI 工具开展<strong> VibeCoding 与 AI for Science 实践</strong>，是"懂实验、会编程、能做产品"的交叉型学习者。</p>
-    <p>独立完成多个个人项目：从理论计算指导的材料设计，到知识图谱平台的从 0 到 1，再到创业计划与科研论文写作。相信 AI 正在重塑科研与药物研发的工作方式，并乐于身处其中。</p>
+</nav>
+
+<!-- 首屏：分子聚拢画布 -->
+<section id="hero">
+  <canvas id="molCanvas"></canvas>
+  <div class="hero-vignette"></div>
+  <div class="hero-content">
+    <div class="sig-eyebrow hero-eyebrow">PHARMA × AI FOR SCIENCE</div>
+    <h1 class="glow-title"><span class="sig-shimmer-text">分子聚拢成云<br>灵感沉淀成图</span></h1>
+    <p>懂实验、会编程、能做产品——用 AI 重新想象药物发现</p>
   </div>
-</section>
- 
-<section>
-  <div class="container">
-    <h2>项目经历</h2>
-    <div class="card">
-      <h3>药研云图（药化云）<em>创始人 / 独立开发</em></h3>
-      <p>面向药物化学的知识图谱平台：整合药物-靶点-疾病关联数据，构建可视化知识网络，辅助药物设计决策。采用 VibeCoding 模式独立完成产品原型、前后端开发与部署，并配套建设自媒体矩阵推广。</p>
-    </div>
-    <div class="card">
-      <h3>OPC 创业计划<em>核心发起人</em></h3>
-      <p>定位 AI for Science 药学垂直方向的开放式研发创业项目：规划"AI 辅助药物设计 + 科研服务"双轮业务，完成市场调研、产品方向设计与商业计划书撰写，探索从 0 到 1 的团队搭建。</p>
-    </div>
-    <div class="card">
-      <h3>AI4S 科研论文项目<em>独立研究者</em></h3>
-      <p>AI 辅助药物分子设计与发现方向：完成文献调研、算法原型验证与论文写作，探索机器学习在分子性质预测与虚拟筛选中的应用。</p>
-    </div>
-    <div class="card">
-      <h3>绿色分离介质研究（"绿径通优"）<em>项目成员</em></h3>
-      <p>围绕中药活性成分的绿色分离开展三模块研究：分子印迹固相萃取、温敏硼酸聚合物纯化多糖、DES 改性色谱分离生物碱，涉及 HPLC 方法学验证与理论计算。</p>
+  <div class="hero-status">
+    <div style="display:flex;flex-direction:column;align-items:center;gap:8px">
+      <div class="status-bar sig-glass">
+        <span class="status-name" id="molName">咖啡因</span>
+        <span class="status-formula" id="molFormula">C₈H₁₀N₄O₂</span>
+        <button class="btn-ghost btn" id="replayBtn" style="padding:4px 14px;font-size:.72rem">↻ 重播</button>
+      </div>
+      <div class="status-hint">单击换一个分子 · 移动鼠标扰动 · 双击核聚变</div>
     </div>
   </div>
 </section>
- 
-<section>
+
+<main>
+<section id="about">
   <div class="container">
-    <h2>技能</h2>
+    <div class="sec-tag reveal">01 / ABOUT</div>
+    <h2 class="reveal reveal-delay-1">关于<span class="glow-title"><span class="sig-shimmer-text">XiHee</span></span></h2>
+    <div class="about-grid">
+      <div class="about-card reveal reveal-delay-2">
+        <p>药学专业本科在读，系统掌握 HPLC 等仪器分析与药物化学知识，同时长期使用 AI 工具开展 <strong>VibeCoding 与 AI for Science 实践</strong>，是"懂实验、会编程、能做产品"的交叉型学习者。</p>
+        <p>从理论计算指导的材料设计，到知识图谱平台的从 0 到 1，再到创业计划与科研论文写作——我相信 AI 正在重塑科研与药物研发的工作方式，并乐于身处其中。</p>
+      </div>
+      <div class="stats reveal reveal-delay-3">
+        <div class="stat"><b>3</b><span>个人主导 / 参与项目</span></div>
+        <div class="stat"><b>3</b><span>实验 × 代码 × 产品</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="container">
+    <div class="sec-tag reveal">02 / PROJECTS</div>
+    <h2 class="reveal reveal-delay-1">项目经历</h2>
+    <div class="cards">
+      <div class="card sig-card-hover reveal reveal-delay-2">
+        <div class="card-top"><span class="card-no">MOL-01</span><span class="role">创始人 / 独立开发</span></div>
+        <h3>药研云图（药化云）</h3>
+        <p>面向药物化学的知识图谱平台：整合药物-靶点-疾病关联数据，构建可视化知识网络辅助设计决策。以 VibeCoding 模式独立完成原型、前后端开发与部署，配套自媒体矩阵推广。</p>
+        <div class="chips"><span class="chip">知识图谱</span><span class="chip">VibeCoding</span><span class="chip">全栈开发</span></div>
+      </div>
+      <div class="card sig-card-hover reveal reveal-delay-3">
+        <div class="card-top"><span class="card-no">MOL-02</span><span class="role">核心发起人</span></div>
+        <h3>OPC 创业计划</h3>
+        <p>AI for Science 药学垂直方向的开放式研发创业项目：规划"AI 辅助药物设计 + 科研服务"双轮业务，完成市场调研、产品方向设计与商业计划书，探索从 0 到 1 的团队搭建。</p>
+        <div class="chips"><span class="chip">商业计划</span><span class="chip">AI4S</span><span class="chip">0→1</span></div>
+      </div>
+      <div class="card sig-card-hover reveal reveal-delay-4">
+        <div class="card-top"><span class="card-no">MOL-03</span><span class="role">独立研究者</span></div>
+        <h3>AI4S 科研论文项目</h3>
+        <p>AI 辅助药物分子设计与发现方向：完成文献调研、算法原型验证与论文写作，探索机器学习在分子性质预测与虚拟筛选中的应用。</p>
+        <div class="chips"><span class="chip">机器学习</span><span class="chip">虚拟筛选</span><span class="chip">论文写作</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="container">
+    <div class="sec-tag reveal">03 / SKILLS</div>
+    <h2 class="reveal reveal-delay-1">技能矩阵</h2>
     <div class="skills">
-      <div class="skill-group">
+      <div class="skill-group reveal reveal-delay-2">
         <h4>实验与分析</h4>
         <ul>
           <li>HPLC 操作与方法学验证</li>
@@ -145,7 +389,7 @@
           <li>图谱解析（NMR / MS / IR）</li>
         </ul>
       </div>
-      <div class="skill-group">
+      <div class="skill-group reveal reveal-delay-3">
         <h4>AI 与编程</h4>
         <ul>
           <li>VibeCoding 全栈开发</li>
@@ -153,7 +397,7 @@
           <li>知识图谱构建</li>
         </ul>
       </div>
-      <div class="skill-group">
+      <div class="skill-group reveal reveal-delay-4">
         <h4>产品与运营</h4>
         <ul>
           <li>商业计划书撰写</li>
@@ -164,18 +408,414 @@
     </div>
   </div>
 </section>
- 
-<section class="contact">
+
+<section id="contact">
   <div class="container">
-    <h2>联系我</h2>
-    <p>邮箱：<a href="17308888589@163.com">17308888589@163.com</a></p>
-    <p>GitHub：<a href="https://github.com/Xhee-learner">github.com/Xhee-learner</a></p>
+    <div class="sec-tag reveal">04 / CONTACT</div>
+    <h2 class="reveal reveal-delay-1">建立连接</h2>
+    <div class="contact-box reveal reveal-delay-2">
+      <h3>一起做点有意思的事</h3>
+      <p>无论是 AI4S 项目合作、药学问题交流，还是想聊聊 VibeCoding，欢迎随时联系。</p>
+      <div class="contact-row">
+        <a class="btn btn-primary" href="mailto:17308888589@163.com">✉ 17308888589@163.com</a>
+        <a class="btn btn-ghost" href="https://github.com/Xhee-learner" target="_blank" rel="noopener">⌥ github.com/Xhee-learner</a>
+      </div>
+    </div>
   </div>
 </section>
- 
+</main>
+
 <footer>
-  <div class="container">© 2026 张泽熙 · Built with GitHub Pages</div>
+  <div class="hexline">⬡ ⬡ ⬡ ⬡ ⬡ ⬡</div>
+  © 2026 张泽熙 · 药学 × AI for Science · Built with GitHub Pages
 </footer>
- 
+
+<div id="fusionFlash"><div class="inner sig-glass sig-shimmer-text">分子聚合 · 云图初成</div></div>
+
+<script>
+/* ===== 分子数据（咖啡因 / 阿司匹林 / 苯环，二维骨架坐标） ===== */
+const MOLECULES = [
+  { id: 'caffeine', name: '咖啡因', formula: 'C₈H₁₀N₄O₂', fit: 6.8,
+    atoms: [
+      {x:-0.87,y:0.95,el:'N'},{x:0,y:1.45,el:'C'},{x:0.87,y:0.95,el:'N'},
+      {x:0.87,y:-0.05,el:'C'},{x:0,y:-0.55,el:'C'},{x:-0.87,y:-0.05,el:'C'},
+      {x:1.66,y:-0.68,el:'N'},{x:1.13,y:-1.52,el:'C'},{x:0,y:-1.5,el:'N'},
+      {x:0,y:2.45,el:'O'},{x:-1.7,y:-0.75,el:'O'},
+      {x:-1.75,y:1.45,el:'C'},{x:1.75,y:1.45,el:'C'},{x:-0.3,y:-2.5,el:'C'},{x:1.95,y:-1.9,el:'H'}
+    ],
+    bonds: [
+      [0,1,1],[1,2,1],[2,3,1],[3,4,2],[4,5,1],[5,0,1],
+      [3,6,1],[6,7,2],[7,8,1],[8,4,1],[1,9,2],[5,10,2],
+      [0,11,1],[2,12,1],[8,13,1],[7,14,1]
+    ]
+  },
+  { id: 'aspirin', name: '阿司匹林', formula: 'C₉H₈O₄', fit: 7.0,
+    atoms: [
+      {x:0,y:0,el:'C'},{x:0.87,y:-0.5,el:'C'},{x:0.87,y:-1.5,el:'C'},
+      {x:0,y:-2,el:'C'},{x:-0.87,y:-1.5,el:'C'},{x:-0.87,y:-0.5,el:'C'},
+      {x:0.9,y:0.72,el:'O'},{x:1.9,y:1.05,el:'C'},{x:2.05,y:2.05,el:'O'},
+      {x:2.9,y:0.6,el:'C'},{x:-1.75,y:0,el:'C'},{x:-2.6,y:-0.45,el:'O'},{x:-1.85,y:1.05,el:'O'}
+    ],
+    bonds: [
+      [0,1,2],[1,2,1],[2,3,2],[3,4,1],[4,5,2],[5,0,1],
+      [0,6,1],[6,7,1],[7,8,2],[7,9,1],[5,10,1],[10,11,2],[10,12,1]
+    ]
+  },
+  { id: 'benzene', name: '苯环', formula: 'C₆H₆', fit: 4.8,
+    atoms: [
+      {x:0,y:1,el:'C'},{x:0.87,y:0.5,el:'C'},{x:0.87,y:-0.5,el:'C'},
+      {x:0,y:-1,el:'C'},{x:-0.87,y:-0.5,el:'C'},{x:-0.87,y:0.5,el:'C'},
+      {x:0,y:1.75,el:'H'},{x:1.52,y:0.88,el:'H'},{x:1.52,y:-0.88,el:'H'},
+      {x:0,y:-1.75,el:'H'},{x:-1.52,y:-0.88,el:'H'},{x:-1.52,y:0.88,el:'H'}
+    ],
+    bonds: [
+      [0,1,2],[1,2,1],[2,3,2],[3,4,1],[4,5,2],[5,0,1],
+      [0,6,1],[1,7,1],[2,8,1],[3,9,1],[4,10,1],[5,11,1]
+    ]
+  }
+];
+
+/* ===== 主题切换 ===== */
+const THEME_DOTS = document.querySelectorAll('.theme-dot');
+function setTheme(name) {
+  document.documentElement.className = name;
+  THEME_DOTS.forEach(d => d.classList.toggle('active', d.dataset.theme === name));
+  localStorage.setItem('theme', name);
+}
+THEME_DOTS.forEach(d => d.addEventListener('click', () => setTheme(d.dataset.theme)));
+setTheme(localStorage.getItem('theme') || 'celadon');
+
+/* ===== 滚动入场动画 ===== */
+(function () {
+  const els = document.querySelectorAll('.reveal');
+  if (!('IntersectionObserver' in window) || els.length === 0) {
+    els.forEach(e => e.classList.add('in'));
+    return;
+  }
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(en => {
+      if (en.isIntersecting) {
+        en.target.classList.add('in');
+        io.unobserve(en.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+  els.forEach(e => io.observe(e));
+})();
+
+/* ===== 分子聚拢引擎（移植自 MolecularCanvas.tsx） ===== */
+(function () {
+  const canvas = document.getElementById('molCanvas');
+  const ctx = canvas.getContext('2d');
+  const TAU = Math.PI * 2;
+  const rand = (a, b) => a + Math.random() * (b - a);
+  const clamp01 = v => v < 0 ? 0 : v > 1 ? 1 : v;
+  const easeOut = p => 1 - Math.pow(1 - p, 3);
+  const MOL_FIT_RATIO = 0.75;
+
+  const FRAGMENTS = [
+    {atoms:[{bx:0,by:0,el:'O'},{bx:-0.78,by:-0.5,el:'H'},{bx:0.78,by:-0.5,el:'H'}],bonds:[[0,1,1],[0,2,1]],charge:0},
+    {atoms:[{bx:-1,by:0,el:'O'},{bx:0,by:0,el:'C'},{bx:1,by:0,el:'O'}],bonds:[[0,1,2],[1,2,2]],charge:0},
+    {atoms:[{bx:0,by:0,el:'N'},{bx:-0.82,by:0.4,el:'H'},{bx:0.82,by:0.4,el:'H'},{bx:0,by:-0.92,el:'H'}],bonds:[[0,1,1],[0,2,1],[0,3,1]],charge:0},
+    {atoms:[{bx:0,by:0,el:'C'},{bx:0.95,by:0,el:'O'}],bonds:[[0,1,2]],charge:0},
+    {atoms:[{bx:-0.5,by:0,el:'O'},{bx:0.5,by:0,el:'O'}],bonds:[[0,1,2]],charge:0},
+    {atoms:[{bx:0,by:0,el:'H'}],bonds:[],charge:1},
+    {atoms:[{bx:0,by:0,el:'O'},{bx:0.95,by:0.15,el:'H'}],bonds:[[0,1,1]],charge:-1},
+    {atoms:[{bx:0,by:0,el:'Cl'}],bonds:[],charge:-1},
+  ];
+  const elToken = el => el==='C'?'--mol-c':el==='H'?'--mol-h':el==='N'?'--mol-n':el==='S'?'--mol-s':el==='Cl'?'--mol-cl':'--mol-o';
+
+  let molIdx = 0;
+  let replayKey = 0;
+  const nameEl = document.getElementById('molName');
+  const formulaEl = document.getElementById('molFormula');
+  const flash = document.getElementById('fusionFlash');
+  const hero = document.getElementById('hero');
+
+  function bboxOf(mol){
+    const xs = mol.atoms.map(a=>a.x), ys = mol.atoms.map(a=>a.y);
+    return { cx:(Math.min(...xs)+Math.max(...xs))/2, cy:(Math.min(...ys)+Math.max(...ys))/2, maxDim:Math.max(Math.max(...xs)-Math.min(...xs), Math.max(...ys)-Math.min(...ys))||1 };
+  }
+  function spawnFloaters(W,H,n=18){
+    return Array.from({length:n},()=>{
+      const f = FRAGMENTS[Math.floor(Math.random()*FRAGMENTS.length)];
+      const ang = rand(0,TAU), spd = rand(0.08,0.24), roll=Math.random();
+      return { x:rand(0,W),y:rand(0,H), vx:Math.cos(ang)*spd, vy:Math.sin(ang)*spd,
+        rot:rand(0,TAU), vrot:rand(-0.004,0.004),
+        scale: Math.random()<0.34?rand(17,25):rand(13,21), ph:rand(0,TAU),
+        atoms:f.atoms, bonds:f.bonds, charge:f.charge,
+        mode: roll<0.45?'free':roll<0.75?'follow':'flee', bright:Math.random()<0.34 };
+    });
+  }
+
+  let W=0, H=0;
+  function resize(){
+    const dpr = Math.min(window.devicePixelRatio||1, 2);
+    W = canvas.clientWidth; H = canvas.clientHeight;
+    canvas.width = Math.round(W*dpr); canvas.height = Math.round(H*dpr);
+    ctx.setTransform(dpr,0,0,dpr,0,0);
+    if (eng){ eng.W=W; eng.H=H; eng.scale=(Math.min(W,H)*MOL_FIT_RATIO)/bboxOf(MOLECULES[molIdx]).maxDim; }
+  }
+
+  let eng = null;
+  function reset(){
+    const mol = MOLECULES[molIdx];
+    const now = performance.now();
+    const bb = bboxOf(mol);
+    const scale = (Math.min(W,H)*MOL_FIT_RATIO)/bb.maxDim;
+    const atoms = mol.atoms.map(a=>{
+      const ang=rand(0,TAU), rr=Math.min(W,H)*rand(0.32,0.52);
+      return { x:W/2+Math.cos(ang)*rr, y:H/2+Math.sin(ang)*rr*0.9,
+        vx:rand(-0.25,0.25), vy:rand(-0.25,0.25),
+        tx:W/2+(a.x-bb.cx)*scale, ty:H/2+(a.y-bb.cy)*scale,
+        bx:a.x-bb.cx, by:a.y-bb.cy, el:a.el, born:0 };
+    });
+    const prev = eng;
+    eng = { atoms, bonds:mol.bonds.map(b=>({a:b[0],b:b[1],order:b[2],start:0,grown:0})),
+      phase:'scatter', phaseT:now, ripples:[],
+      dust:Array.from({length:22},()=>({x:rand(0,W),y:rand(0,H),r:rand(0.6,1.5),ph:rand(0,TAU),amp:rand(0.2,0.6)})),
+      meteors:prev?.meteors||[], floaters:prev?.floaters||spawnFloaters(W,H),
+      meteorNext:prev?.meteorNext||now+rand(800,2000), lastT:prev?.lastT||now,
+      mouse:{x:W/2,y:H/2,on:false}, fusionUntil:0, fusionX:W/2, fusionY:H/2, bloomT:0, W, H, scale, done:false };
+    nameEl.textContent = mol.name;
+    formulaEl.textContent = mol.formula;
+  }
+
+  function burst(cx,cy,power,radius){
+    for(const a of eng.atoms){
+      const dx=a.x-cx, dy=a.y-cy, d=Math.max(24,Math.hypot(dx,dy));
+      const f=(power*(1-Math.min(d,radius)/radius))/d;
+      a.vx+=dx*f+rand(-0.6,0.6); a.vy+=dy*f+rand(-0.6,0.6);
+    }
+  }
+
+  const pos = e => { const r=canvas.getBoundingClientRect(); return {x:e.clientX-r.left, y:e.clientY-r.top}; };
+  canvas.addEventListener('mousemove', e=>{ const p=pos(e); eng.mouse.x=p.x; eng.mouse.y=p.y; eng.mouse.on=true; });
+  canvas.addEventListener('mouseleave', ()=>{ eng.mouse.on=false; });
+  canvas.addEventListener('click', e=>{
+    const p=pos(e);
+    burst(p.x,p.y,3.2,190);
+    eng.ripples.push({x:p.x,y:p.y,r:6,v:3.4,alpha:.5,w:1.6});
+    eng.phase='scatter'; eng.phaseT=performance.now(); eng.done=false;
+    eng.bonds.forEach(b=>{b.grown=0;b.start=0;});
+    molIdx = (molIdx+1) % MOLECULES.length;
+    setTimeout(()=>{ replayKey++; reset(); }, 340);
+  });
+  canvas.addEventListener('dblclick', e=>{
+    const p=pos(e);
+    eng.fusionUntil = performance.now()+720;
+    eng.fusionX=p.x; eng.fusionY=p.y;
+    flash.classList.remove('on'); void flash.offsetWidth;
+    flash.classList.add('on');
+    hero.classList.remove('quake'); void hero.offsetWidth;
+    hero.classList.add('quake');
+    setTimeout(()=>flash.classList.remove('on'), 700);
+  });
+  document.getElementById('replayBtn').addEventListener('click', e=>{
+    e.stopPropagation();
+    replayKey++; reset();
+  });
+
+  window.addEventListener('resize', resize);
+  resize();
+  reset();
+
+  function tick(now){
+    requestAnimationFrame(tick);
+    const t = now/1000;
+    const css = getComputedStyle(document.documentElement);
+    const v = n => css.getPropertyValue(n).trim();
+    const col = (n,a)=>`hsl(${v(n)} / ${a})`;
+    const lightBlend = ['celadon'].some(c=>document.documentElement.classList.contains(c)) ? 'source-over' : 'lighter';
+    const cx=W/2, cy=H/2;
+
+    const el = now - eng.phaseT;
+    if (eng.phase==='scatter' && el>850){
+      eng.phase='assemble'; eng.phaseT=now;
+      eng.atoms.forEach((a,i)=>{ a.born = now+90+i*42; });
+      eng.bonds.forEach((b,i)=>{ b.start = now+480+i*125; });
+    }
+    const fusing = now < eng.fusionUntil;
+    if (eng.fusionUntil>0 && !fusing && eng.phase!=='scatter'){
+      eng.ripples.push({x:eng.fusionX,y:eng.fusionY,r:4,v:7.5,alpha:.85,w:2.6},{x:eng.fusionX,y:eng.fusionY,r:4,v:5.2,alpha:.6,w:1.8},{x:eng.fusionX,y:eng.fusionY,r:4,v:3.4,alpha:.4,w:1.2});
+      burst(eng.fusionX,eng.fusionY,4.6,260);
+      eng.phase='scatter'; eng.phaseT=now; eng.done=false;
+      eng.bonds.forEach(b=>{b.grown=0;b.start=0;});
+      eng.fusionUntil=0;
+    }
+
+    const wobble = eng.phase==='breathe'?Math.sin(t*0.3)*0.045:0;
+    const breathe = eng.phase==='breathe'?1+Math.sin(t*0.6)*0.016:1;
+    const cosW=Math.cos(wobble), sinW=Math.sin(wobble), sc=eng.scale*breathe;
+    for(const a of eng.atoms){
+      const rx=a.bx*sc, ry=a.by*sc;
+      a.tx=cx+rx*cosW-ry*sinW; a.ty=cy+rx*sinW+ry*cosW;
+    }
+
+    let spdSum=0;
+    for(const a of eng.atoms){
+      const active=eng.phase==='assemble'&&now>=a.born, settled=eng.phase==='breathe';
+      if(fusing){
+        a.vx+=(eng.fusionX-a.x)*0.055; a.vy+=(eng.fusionY-a.y)*0.055; a.vx*=0.74; a.vy*=0.74;
+      } else if(active||settled){
+        const k=settled?0.009:0.02, damp=settled?0.88:0.84;
+        a.vx+=(a.tx-a.x)*k; a.vy+=(a.ty-a.y)*k; a.vx*=damp; a.vy*=damp;
+        if(settled&&eng.mouse.on){
+          const dx=eng.mouse.x-a.x, dy=eng.mouse.y-a.y, d=Math.hypot(dx,dy);
+          if(d<175&&d>1){ const f=(1-d/175)*0.55/d; a.vx+=dx*f; a.vy+=dy*f; }
+        }
+      } else {
+        const dx=cx-a.x, dy=cy-a.y, d=Math.max(1,Math.hypot(dx,dy));
+        if(d>Math.min(W,H)*0.46){ a.vx+=dx/d*0.015; a.vy+=dy/d*0.015; }
+        a.vx+=Math.sin(t*0.8+a.bx*5)*0.004; a.vy+=Math.cos(t*0.7+a.by*5)*0.004;
+        a.vx*=0.985; a.vy*=0.985;
+      }
+      a.x+=a.vx; a.y+=a.vy; spdSum+=Math.hypot(a.vx,a.vy);
+    }
+    for(const b of eng.bonds){ if(b.start>0&&b.grown<1) b.grown=clamp01((now-b.start)/460); }
+    if(eng.phase==='assemble'&&!eng.done){
+      const allGrown=eng.bonds.every(b=>b.grown>=1), allBorn=eng.atoms.every(a=>now>=a.born);
+      if(allGrown&&allBorn&&spdSum/eng.atoms.length<0.5){
+        eng.phase='breathe'; eng.done=true; eng.bloomT=now;
+        eng.ripples.push({x:cx,y:cy,r:10,v:2.2,alpha:.35,w:1.2});
+      }
+    }
+    for(const r of eng.ripples){ r.r+=r.v; r.v*=0.97; r.alpha*=0.955; }
+    eng.ripples=eng.ripples.filter(r=>r.alpha>0.02);
+
+    if(now>=eng.meteorNext&&eng.meteors.length<4){
+      eng.meteorNext=now+rand(1400,3600);
+      const fromLeft=Math.random()<.5, speed=rand(2.1,3.4), ang=rand(0.42,0.6), sx=rand(0.05,0.6)*W;
+      eng.meteors.push({x:fromLeft?sx:W-sx, y:rand(-0.12,0.08)*H, vx:Math.cos(ang)*speed*(fromLeft?1:-1), vy:Math.sin(ang)*speed, len:rand(60,110), life:0, maxLife:rand(3600,5200), token:Math.random()<.6?'--mol-c':'--accent'});
+    }
+    const dt=Math.min(48,now-eng.lastT); eng.lastT=now;
+    for(const m of eng.meteors){ m.x+=m.vx*(dt/16.7); m.y+=m.vy*(dt/16.7); m.life+=dt; }
+    eng.meteors=eng.meteors.filter(m=>m.life<m.maxLife&&m.x>-m.len&&m.x<W+m.len&&m.y<H+m.len);
+
+    for(const f of eng.floaters){
+      const k=dt/16.7;
+      if(eng.mouse.on&&f.mode!=='free'){
+        const dx=eng.mouse.x-f.x, dy=eng.mouse.y-f.y, d=Math.hypot(dx,dy)||1;
+        if(f.mode==='follow'&&d<240&&d>8){ const pull=(1-d/240)*0.03; f.vx+=(dx/d*pull+(-dy/d)*pull*.4)*k; f.vy+=(dy/d*pull+(dx/d)*pull*.4)*k; }
+        else if(f.mode==='flee'&&d<170&&d>1){ const push=(1-d/170)*0.055; f.vx-=dx/d*push*k; f.vy-=dy/d*push*k; }
+      }
+      const spd=Math.hypot(f.vx,f.vy);
+      if(spd>0.26){ const decay=Math.pow(.994,k); f.vx*=decay; f.vy*=decay; }
+      const cap=f.mode==='follow'?1.2:.55;
+      if(spd>cap){ f.vx=f.vx/spd*cap; f.vy=f.vy/spd*cap; }
+      f.x+=f.vx*k; f.y+=f.vy*k; f.rot+=f.vrot*k;
+      if(f.x<-70)f.x=W+70; else if(f.x>W+70)f.x=-70;
+      if(f.y<-70)f.y=H+70; else if(f.y>H+70)f.y=-70;
+    }
+
+    ctx.clearRect(0,0,W,H);
+    // 微尘
+    for(const d of eng.dust){
+      const px=d.x+Math.sin(t*0.12+d.ph)*26*d.amp, py=d.y+Math.cos(t*0.1+d.ph*1.3)*22*d.amp;
+      ctx.beginPath(); ctx.arc(px,py,d.r,0,TAU);
+      ctx.fillStyle=col('--mol-h',0.2+0.12*Math.sin(t+d.ph)); ctx.fill();
+    }
+    // 游离分子/离子
+    for(const f of eng.floaters){
+      let near=0;
+      if(f.mode!=='free'&&eng.mouse.on){ const d=Math.hypot(eng.mouse.x-f.x,eng.mouse.y-f.y); near=clamp01(1-d/220); }
+      const fa=(f.bright?.32:.22)+(f.bright?.16:.13)*Math.sin(t*0.45+f.ph)+near*0.15;
+      ctx.save(); ctx.translate(f.x,f.y); ctx.rotate(f.rot);
+      for(const b of f.bonds){
+        const A=f.atoms[b[0]], B=f.atoms[b[1]];
+        ctx.beginPath(); ctx.moveTo(A.bx*f.scale,A.by*f.scale); ctx.lineTo(B.bx*f.scale,B.by*f.scale);
+        ctx.strokeStyle=col('--mol-bond',fa*0.95); ctx.lineWidth=1.4; ctx.stroke();
+      }
+      for(const a of f.atoms){
+        const r=a.el==='H'?1.6:a.el==='C'?2.7:3.6;
+        ctx.beginPath(); ctx.arc(a.bx*f.scale,a.by*f.scale,r,0,TAU);
+        ctx.fillStyle=col(elToken(a.el),fa+0.12); ctx.fill();
+      }
+      if(f.charge!==0){
+        let lead=f.atoms[0];
+        for(const a of f.atoms) if(a.bx>lead.bx) lead=a;
+        const sym=f.charge>0?(f.charge>1?f.charge+'+':'+'):f.charge<-1?(-f.charge)+'\u2212':'\u2212';
+        ctx.font='bold 10.5px sans-serif'; ctx.textAlign='left'; ctx.textBaseline='alphabetic';
+        ctx.fillStyle=col(elToken(lead.el),fa+0.2); ctx.fillText(sym,lead.bx*f.scale+4,lead.by*f.scale-4);
+      }
+      ctx.restore();
+    }
+    // 流星
+    for(const m of eng.meteors){
+      const spd=Math.hypot(m.vx,m.vy)||1;
+      const fade=clamp01(Math.min(m.life/500,(m.maxLife-m.life)/900));
+      const tx=m.x-(m.vx/spd)*m.len, ty=m.y-(m.vy/spd)*m.len;
+      const grad=ctx.createLinearGradient(m.x,m.y,tx,ty);
+      grad.addColorStop(0,col(m.token,.62*fade)); grad.addColorStop(1,col(m.token,0));
+      ctx.beginPath(); ctx.moveTo(m.x,m.y); ctx.lineTo(tx,ty);
+      ctx.strokeStyle=grad; ctx.lineWidth=1.5; ctx.stroke();
+      ctx.beginPath(); ctx.arc(m.x,m.y,1.7,0,TAU); ctx.fillStyle=col(m.token,.82*fade); ctx.fill();
+    }
+    // 涟漪
+    for(const r of eng.ripples){
+      ctx.beginPath(); ctx.arc(r.x,r.y,r.r,0,TAU);
+      ctx.strokeStyle=col('--primary',r.alpha); ctx.lineWidth=r.w; ctx.stroke();
+    }
+    // 键线
+    ctx.lineCap='round';
+    for(let i=0;i<eng.bonds.length;i++){
+      const b=eng.bonds[i]; if(b.grown<=0) continue;
+      const A=eng.atoms[b.a], B=eng.atoms[b.b];
+      const g=easeOut(b.grown), ex=A.x+(B.x-A.x)*g, ey=A.y+(B.y-A.y)*g;
+      const dx=B.x-A.x, dy=B.y-A.y, len=Math.max(1,Math.hypot(dx,dy)), nx=-dy/len, ny=dx/len;
+      const off=b.order===2?2.6:0;
+      const bSettled=eng.phase==='breathe'&&b.grown>=1;
+      const bPulse=bSettled?0.5+0.5*Math.sin(t*1.3+i*2.1):0;
+      const alpha=(0.38+0.57*b.grown)*(bSettled?1+0.32*bPulse:1);
+      ctx.beginPath(); ctx.moveTo(A.x+nx*off,A.y+ny*off); ctx.lineTo(ex+nx*off,ey+ny*off);
+      ctx.strokeStyle=col('--mol-bond',alpha); ctx.lineWidth=1.8; ctx.stroke();
+      if(b.order===2){ ctx.beginPath(); ctx.moveTo(A.x-nx*off,A.y-ny*off); ctx.lineTo(ex-nx*off,ey-ny*off); ctx.stroke(); }
+      if(bSettled&&bPulse>0.35){
+        const halo=0.22*Math.pow((bPulse-0.35)/0.65,1.5);
+        ctx.save(); ctx.globalCompositeOperation=lightBlend;
+        ctx.beginPath(); ctx.moveTo(A.x+nx*off,A.y+ny*off); ctx.lineTo(ex+nx*off,ey+ny*off);
+        if(b.order===2){ ctx.moveTo(A.x-nx*off,A.y-ny*off); ctx.lineTo(ex-nx*off,ey-ny*off); }
+        ctx.strokeStyle=col('--mol-bond',halo); ctx.lineWidth=5.4; ctx.stroke();
+        ctx.restore();
+      }
+      if(bSettled){
+        const pos=(t*0.22+i*0.31)%1, seg=0.16, p0=Math.max(0,pos-seg/2), p1=Math.min(1,pos+seg/2);
+        if(p1>p0){ ctx.save(); ctx.globalCompositeOperation=lightBlend;
+          ctx.beginPath(); ctx.moveTo(A.x+(B.x-A.x)*p0,A.y+(B.y-A.y)*p0); ctx.lineTo(A.x+(B.x-A.x)*p1,A.y+(B.y-A.y)*p1);
+          ctx.strokeStyle=col('--accent',.62); ctx.lineWidth=2.8; ctx.stroke(); ctx.restore(); }
+      }
+    }
+    // 原子
+    for(let ai=0;ai<eng.atoms.length;ai++){
+      const a=eng.atoms[ai];
+      const elVar=elToken(a.el), spd=Math.hypot(a.vx,a.vy);
+      if(spd>1.7){ ctx.beginPath(); ctx.moveTo(a.x-a.vx*7,a.y-a.vy*7); ctx.lineTo(a.x,a.y); ctx.strokeStyle=col(elVar,Math.min(.5,spd*.12)); ctx.lineWidth=1.4; ctx.stroke(); }
+      const waiting=eng.phase==='scatter'||(eng.phase==='assemble'&&performance.now()<a.born);
+      const baseA=waiting?.4:1;
+      const r=a.el==='H'?2:a.el==='C'?3.4:5;
+      const settled=eng.phase==='breathe';
+      const pulse=settled?0.5+0.5*Math.sin(t*1.7+ai*1.9+a.bx*.3+a.by*.2):0;
+      const glowR=(a.el==='H'?8:a.el==='C'?14:19)*(settled?1.08+0.24*pulse:1+Math.sin(t*0.9+a.bx*3)*0.12);
+      const glowA=baseA*(a.el==='H'?.28:a.el==='C'?.4:.52)*(settled?.85+0.5*pulse:1);
+      const grad=ctx.createRadialGradient(a.x,a.y,0,a.x,a.y,glowR);
+      grad.addColorStop(0,col(elVar,glowA)); grad.addColorStop(1,col(elVar,0));
+      ctx.beginPath(); ctx.arc(a.x,a.y,glowR,0,TAU); ctx.fillStyle=grad; ctx.fill();
+      ctx.beginPath(); ctx.arc(a.x,a.y,r,0,TAU); ctx.fillStyle=col(elVar,baseA); ctx.fill();
+      if(a.el!=='C'&&a.el!=='H'){ ctx.font='600 11px sans-serif'; ctx.fillStyle=col(elVar,baseA); ctx.fillText(a.el,a.x+7,a.y-6); }
+    }
+    // 完成光晕
+    if(eng.bloomT>0){
+      const bp=(now-eng.bloomT)/900;
+      if(bp<1){
+        const br=60+easeOut(bp)*170;
+        const bg=ctx.createRadialGradient(cx,cy,0,cx,cy,br);
+        bg.addColorStop(0,col('--primary',.2*(1-bp))); bg.addColorStop(1,col('--primary',0));
+        ctx.beginPath(); ctx.arc(cx,cy,br,0,TAU); ctx.fillStyle=bg; ctx.fill();
+      }
+    }
+  }
+  requestAnimationFrame(tick);
+})();
+</script>
 </body>
 </html>
